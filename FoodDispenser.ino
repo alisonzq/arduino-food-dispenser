@@ -3,8 +3,7 @@
 #include <Servo.h>
 #include "IRremote.h"
 
-// Define the servo pin
-const int servoPin = 9; // Replace with your actual servo pin
+const int servoPin = 9;
 const int receiver = 7;
 
 RTC_DS3231 rtc;
@@ -12,14 +11,12 @@ Servo myservo;
 IRrecv irrecv(receiver);     // create instance of 'irrecv'
 decode_results results;      // create instance of 'decode_results'
 
-// Define the scheduled feeding times
 struct FeedingTime {
   uint8_t hour;
   uint8_t minute;
   bool foodDispensed;
 };
 
-// Add your desired feeding times here
 FeedingTime feedingTimes[] = {
   {12, 30, false},  // 12:30 PM
   {18, 0, false},   // 6:00 PM
@@ -66,6 +63,6 @@ void feedByRemote() {
 
 void dispenseFood(int d) {
   myservo.write(0); // Open the food dispenser
-  delay(d); // Wait for food to be dispensed (adjust as needed)
+  delay(d); // Wait for food to be dispensed
   myservo.write(90); // Close the food dispenser
 }
